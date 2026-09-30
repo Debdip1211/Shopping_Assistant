@@ -1,0 +1,100 @@
+[
+  {
+    "scope": "current",
+    "product": "phone_a.json",
+    "question": "What do reviewers complain about?",
+    "expected_answer": "Heating (while gaming, charging, video calls, in summer), bloatware and ads, average low-light and weak ultra-wide/macro cameras, slow in-display fingerprint sensor, no headphone jack, network/5G drops, poor after-sales service, weight. Should also mention that many reviewers praise the battery and display (balance).",
+    "notes": "Review question. Nimbus is in rag mode, so only 5 retrieved review chunks are seen."
+  },
+  {
+    "scope": "current",
+    "product": "phone_a.json",
+    "question": "What do people say about the battery life?",
+    "expected_answer": "Mostly very positive: lasts a full day of heavy use, 7-8 hours screen time, up to two days with light use, low standby drain. Some say it drains faster on weak 5G.",
+    "notes": "Review question (rag mode)."
+  },
+  {
+    "scope": "current",
+    "product": "phone_b.json",
+    "question": "What do reviewers say about charging?",
+    "expected_answer": "Charging is slow: the box has only a 10W charger, a full charge takes almost 3 hours; you need to buy an 18W charger separately for the advertised speed.",
+    "notes": "Review question (full_context mode)."
+  },
+  {
+    "scope": "current",
+    "product": "phone_a.json",
+    "question": "Does this phone have a headphone jack?",
+    "expected_answer": "No, there is no 3.5mm headphone jack (a reviewer also complains about needing an adapter).",
+    "notes": "Spec question."
+  },
+  {
+    "scope": "current",
+    "product": "phone_c.json",
+    "question": "How fast does it charge?",
+    "expected_answer": "67W wired TurboCharge, 0 to 100% in about 42 minutes; the 67W charger is included in the box.",
+    "notes": "Spec question."
+  },
+  {
+    "scope": "current",
+    "product": "laptop_a.json",
+    "question": "Can I upgrade the RAM or storage later?",
+    "expected_answer": "RAM cannot be upgraded: 16 GB LPDDR5 is soldered. Storage can: the 512 GB NVMe SSD sits in an M.2 slot, upgradeable up to 2 TB.",
+    "notes": "Spec question."
+  },
+  {
+    "scope": "current",
+    "product": "phone_b.json",
+    "question": "Is there any bank offer?",
+    "expected_answer": "10% off up to Rs 1,250 on Axis Bank Credit Card (minimum order Rs 10,000), and 5% cashback on the Flipkart Axis Bank Card. Should note offers were captured on 2026-09-23 and may have changed.",
+    "notes": "Offers question; checks the 'prices may have changed' rule."
+  },
+  {
+    "scope": "current",
+    "product": "phone_a.json",
+    "question": "Is this phone waterproof? What is its IP rating?",
+    "expected_answer": "Not in the data: should say it couldn't find that on this product page (no IP rating is listed).",
+    "notes": "Answer NOT in data. Watch for invented IP ratings."
+  },
+  {
+    "scope": "current",
+    "product": "phone_c.json",
+    "question": "Does it support wireless charging?",
+    "expected_answer": "Not in the data: wireless charging isn't mentioned (only 67W wired charging is listed). Should say it couldn't find it.",
+    "notes": "Answer NOT in data."
+  },
+  {
+    "scope": "history",
+    "product": null,
+    "question": "Which of these phones has a 120Hz display?",
+    "expected_answer": "Nimbus X5 5G has 120Hz. Kairo Z3 Pro has 144Hz (even higher). Vortex Neo 12 has 90Hz. (The laptop is 60Hz.)",
+    "notes": "Cross-product spec comparison."
+  },
+  {
+    "scope": "history",
+    "product": null,
+    "question": "Compare the three phones on battery capacity and charging speed.",
+    "expected_answer": "Nimbus X5: 5000 mAh, 33W. Vortex Neo 12: 6000 mAh, 18W supported but only a 10W charger in the box. Kairo Z3 Pro: 4500 mAh, 67W.",
+    "notes": "Cross-product comparison; battery and charging are in different spec chunks, so PER_PRODUCT_K=2 may miss one."
+  },
+  {
+    "scope": "history",
+    "product": null,
+    "question": "Which product is the cheapest?",
+    "expected_answer": "Vortex Neo 12 5G at Rs 16,499 (Nimbus Rs 18,999, Kairo Rs 21,999, Aerolite laptop Rs 54,990). Should note prices were captured when viewed and may have changed.",
+    "notes": "Cross-product; answer comes from the summary cards, not the chunks."
+  },
+  {
+    "scope": "history",
+    "product": null,
+    "question": "Which phone do reviewers praise most for battery life?",
+    "expected_answer": "Vortex Neo 12 (lasts about two days, 'battery king') and Nimbus X5 (full day of heavy use). Kairo Z3 Pro's battery is called average, saved by fast charging. Should say evidence is limited to a few excerpts.",
+    "notes": "Cross-product review comparison."
+  },
+  {
+    "scope": "history",
+    "product": null,
+    "question": "Which of these products have a 3.5mm headphone jack?",
+    "expected_answer": "Vortex Neo 12 (yes) and the Aerolite laptop (3.5mm audio jack). Nimbus X5 and Kairo Z3 Pro do not.",
+    "notes": "Cross-product spec; the jack line sits deep inside spec chunks, a hard retrieval test."
+  }
+]

@@ -1,0 +1,506 @@
+/* Side panel styles. The panel is about 360px wide. */
+
+:root {
+  --sa-bg: #f5f7fa;
+  --sa-surface: #ffffff;
+  --sa-ink: #17202c;
+  --sa-muted: #5a6577;
+  --sa-line: #d3d9e2;
+  --sa-accent: #3446c4;
+  --sa-accent-soft: #e7eafb;
+  --sa-on-accent: #ffffff;
+  --sa-warning: #8a5a00;
+  --sa-warning-soft: #fbf0dd;
+  --sa-error: #b3261e;
+  --sa-error-soft: #fbe9e7;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sa-bg: #0f141b;
+    --sa-surface: #161d27;
+    --sa-ink: #e5e9f0;
+    --sa-muted: #98a3b4;
+    --sa-line: #2c3544;
+    --sa-accent: #8d9cff;
+    --sa-accent-soft: #1e2547;
+    --sa-on-accent: #0f141b;
+    --sa-warning: #e6ac4e;
+    --sa-warning-soft: #3a2b12;
+    --sa-error: #ff8a80;
+    --sa-error-soft: #3b1a18;
+  }
+}
+
+/* The panel is a column: header, notice, card, scope, chat (scrolls), input (bottom). */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 14px 14px 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--sa-bg);
+  color: var(--sa-ink);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: 17px;
+  color: var(--sa-accent);
+}
+
+p {
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.sa-muted {
+  color: var(--sa-muted);
+  font-size: 12px;
+}
+
+/* ---------- header and view tabs ---------- */
+
+.sa-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sa-views {
+  display: flex;
+  gap: 4px;
+}
+
+.sa-views button {
+  padding: 4px 9px;
+  font-size: 12px;
+  border-color: var(--sa-line);
+  color: var(--sa-muted);
+}
+
+.sa-views button[aria-pressed="true"] {
+  border-color: var(--sa-accent);
+  background: var(--sa-accent-soft);
+  color: var(--sa-accent);
+  font-weight: 600;
+}
+
+/* Each view fills the space under the header; the chat list inside it scrolls. */
+.sa-view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ---------- saved products view ---------- */
+
+.sa-products {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sa-product {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--sa-line);
+  background: var(--sa-surface);
+}
+
+.sa-product-info {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sa-product-title {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sa-danger {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-color: var(--sa-error);
+  color: var(--sa-error);
+}
+
+.sa-danger-solid {
+  background: var(--sa-error);
+  color: var(--sa-surface);
+  font-weight: 600;
+}
+
+.sa-delete-all {
+  display: grid;
+  justify-items: end;
+}
+
+.sa-confirm {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--sa-error);
+  background: var(--sa-error-soft);
+  color: var(--sa-error);
+  font-size: 13px;
+}
+
+.sa-confirm-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------- notice (loading / warning / error) ---------- */
+
+.sa-notice {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--sa-line);
+  background: var(--sa-surface);
+}
+
+.sa-notice[data-tone="warning"] {
+  border-color: var(--sa-warning);
+  background: var(--sa-warning-soft);
+  color: var(--sa-warning);
+}
+
+.sa-notice[data-tone="error"] {
+  border-color: var(--sa-error);
+  background: var(--sa-error-soft);
+  color: var(--sa-error);
+}
+
+/* ---------- product card ---------- */
+
+.sa-card {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--sa-line);
+  background: var(--sa-surface);
+}
+
+.sa-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.sa-badge {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--sa-line);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--sa-muted);
+}
+
+.sa-badge-mode {
+  border-color: var(--sa-accent);
+  background: var(--sa-accent-soft);
+  color: var(--sa-accent);
+}
+
+.sa-title {
+  margin: 2px 0 0;
+  font-size: 14px;
+  line-height: 1.35;
+  /* long Amazon titles: show at most 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sa-price {
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.sa-rating {
+  color: var(--sa-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- scope toggle ---------- */
+
+.sa-scope {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--sa-surface);
+  border: 1px solid var(--sa-line);
+}
+
+.sa-scope button {
+  justify-self: stretch;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 6px;
+  font-size: 12.5px;
+  color: var(--sa-muted);
+}
+
+.sa-scope button[aria-checked="true"] {
+  background: var(--sa-accent);
+  color: var(--sa-on-accent);
+  font-weight: 600;
+}
+
+/* ---------- chat ---------- */
+
+.sa-chat {
+  flex: 1;
+  min-height: 120px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2px;
+}
+
+.sa-chat-empty {
+  margin: auto 0;
+  text-align: center;
+  color: var(--sa-muted);
+  font-size: 13px;
+}
+
+.sa-msg {
+  max-width: 92%;
+  padding: 9px 11px;
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+
+.sa-msg-user {
+  align-self: flex-end;
+  background: var(--sa-accent);
+  color: var(--sa-on-accent);
+  border-bottom-right-radius: 4px;
+  white-space: pre-wrap;
+}
+
+.sa-msg-assistant {
+  align-self: flex-start;
+  display: grid;
+  gap: 6px;
+  background: var(--sa-surface);
+  border: 1px solid var(--sa-line);
+  border-bottom-left-radius: 4px;
+}
+
+.sa-msg-error {
+  align-self: stretch;
+  max-width: none;
+  background: var(--sa-error-soft);
+  border: 1px solid var(--sa-error);
+  color: var(--sa-error);
+  white-space: pre-wrap;
+}
+
+.sa-msg-thinking {
+  align-self: flex-start;
+  color: var(--sa-muted);
+  background: var(--sa-surface);
+  border: 1px dashed var(--sa-line);
+}
+
+.sa-msg-thinking::after {
+  content: "…";
+  display: inline-block;
+  animation: sa-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes sa-pulse {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-msg-thinking::after {
+    animation: none;
+  }
+}
+
+.sa-answer-heading {
+  font-weight: 700;
+}
+
+.sa-answer-bullet {
+  padding-left: 14px;
+  position: relative;
+}
+
+.sa-answer-bullet::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  color: var(--sa-muted);
+}
+
+.sa-table-wrap {
+  overflow-x: auto;
+}
+
+.sa-table-wrap table {
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.sa-table-wrap th,
+.sa-table-wrap td {
+  border: 1px solid var(--sa-line);
+  padding: 4px 6px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.sa-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.sa-chip {
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--sa-line);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--sa-muted);
+  cursor: help;
+}
+
+/* Chips from the open page: clickable, highlight the passage. */
+.sa-chip-link {
+  justify-self: auto;
+  border-color: var(--sa-accent);
+  color: var(--sa-accent);
+  background: var(--sa-accent-soft);
+  cursor: pointer;
+}
+
+.sa-chip-link:hover {
+  background: var(--sa-accent);
+  color: var(--sa-on-accent);
+}
+
+.sa-toast {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--sa-warning-soft);
+  color: var(--sa-warning);
+  font-size: 12px;
+}
+
+/* ---------- input ---------- */
+
+.sa-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.sa-form textarea {
+  resize: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--sa-line);
+  background: var(--sa-surface);
+  color: var(--sa-ink);
+  font: inherit;
+}
+
+.sa-form textarea:focus-visible {
+  outline: 2px solid var(--sa-accent);
+  outline-offset: 0;
+}
+
+.sa-form button[type="submit"] {
+  background: var(--sa-accent);
+  border-color: var(--sa-accent);
+  color: var(--sa-on-accent);
+  font-weight: 600;
+}
+
+/* ---------- footer ---------- */
+
+.sa-footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.sa-footer button {
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--sa-muted);
+  border-color: var(--sa-line);
+}
+
+/* ---------- buttons ---------- */
+
+button {
+  justify-self: start;
+  padding: 7px 12px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--sa-accent);
+  outline-offset: 2px;
+}

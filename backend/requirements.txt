@@ -1,0 +1,28 @@
+# Direct dependencies, pinned to the versions tested with this project (Python 3.12).
+
+# Web API
+fastapi==0.141.1
+uvicorn==0.54.0
+pydantic==2.13.5
+
+# Config
+python-dotenv==1.2.3
+
+# LangChain core pieces
+langchain==1.4.2
+langchain-core==1.6.5
+langchain-text-splitters==1.1.2
+
+# Hugging Face: LLM via Inference Providers + local embeddings
+langchain-huggingface==1.2.2
+# Needed by HuggingFaceEmbeddings to run the embedding model locally
+sentence-transformers==6.1.0
+
+# Vector store
+langchain-chroma==1.1.0
+
+# Prototype UI
+streamlit==1.64.0
+
+# Testing
+pytest==9.1.1

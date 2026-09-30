@@ -1,0 +1,11 @@
+/* Styles injected into shopping pages. Every class starts with "sa-" so we never
+   clash with the website's own styles. */
+
+mark.sa-highlight {
+  background: #ffe36e;
+  color: #111111;
+  border-radius: 3px;
+  padding: 0 2px;
+  box-shadow: 0 0 0 2px #f2b705;
+  scroll-margin: 120px;
+}

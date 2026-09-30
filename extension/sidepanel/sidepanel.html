@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Assistant</title>
+    <link rel="stylesheet" href="sidepanel.css">
+  </head>
+  <body>
+    <header class="sa-header">
+      <h1>Shopping Assistant</h1>
+      <!-- Two views: the chat, and the list of saved products. -->
+      <nav class="sa-views" aria-label="Views">
+        <button id="sa-view-chat-btn" type="button" aria-pressed="true">Chat</button>
+        <button id="sa-view-products-btn" type="button" aria-pressed="false">Saved products</button>
+      </nav>
+    </header>
+
+    <!-- ===== Chat view ===== -->
+    <main id="sa-view-chat" class="sa-view">
+      <!-- Loading, warnings and errors about the page appear here. -->
+      <div id="sa-notice" class="sa-notice" role="status">
+        <p id="sa-notice-text">Reading this page…</p>
+        <button id="sa-retry" type="button" hidden>Try again</button>
+      </div>
+
+      <!-- The current product, after it has been saved to the backend. -->
+      <article id="sa-card" class="sa-card" hidden>
+        <div class="sa-badges">
+          <span id="sa-site" class="sa-badge"></span>
+          <span id="sa-mode" class="sa-badge sa-badge-mode"></span>
+        </div>
+        <h2 id="sa-title" class="sa-title"></h2>
+        <p id="sa-price" class="sa-price"></p>
+        <p id="sa-rating" class="sa-rating"></p>
+        <p id="sa-saved" class="sa-muted"></p>
+      </article>
+
+      <!-- Scope toggle: what the question is about. -->
+      <div class="sa-scope" role="radiogroup" aria-label="Ask about">
+        <button id="sa-scope-current" type="button" role="radio" aria-checked="true">This product</button>
+        <button id="sa-scope-history" type="button" role="radio" aria-checked="false">All viewed products</button>
+      </div>
+
+      <!-- The conversation for the selected scope. -->
+      <section id="sa-chat" class="sa-chat" role="log" aria-live="polite" aria-label="Conversation">
+        <p id="sa-chat-empty" class="sa-chat-empty"></p>
+      </section>
+
+      <p id="sa-toast" class="sa-toast" role="status" hidden></p>
+
+      <form id="sa-form" class="sa-form">
+        <textarea id="sa-input" rows="2" placeholder="Ask a question…" aria-label="Your question"></textarea>
+        <button id="sa-send" type="submit">Send</button>
+      </form>
+
+      <footer class="sa-footer">
+        <button id="sa-refresh" type="button" title="Read the page again, e.g. after scrolling to load more reviews">Refresh page data</button>
+        <button id="sa-clear" type="button">Clear chat</button>
+      </footer>
+    </main>
+
+    <!-- ===== Saved products view ===== -->
+    <section id="sa-view-products" class="sa-view" hidden aria-label="Saved products">
+      <p id="sa-products-status" class="sa-muted" role="status"></p>
+      <ul id="sa-products" class="sa-products"></ul>
+
+      <div class="sa-delete-all">
+        <button id="sa-delete-all" type="button" class="sa-danger">Delete all</button>
+        <div id="sa-delete-all-confirm" class="sa-confirm" hidden>
+          <p id="sa-delete-all-question"></p>
+          <div class="sa-confirm-buttons">
+            <button id="sa-delete-all-yes" type="button" class="sa-danger sa-danger-solid">Yes, delete all</button>
+            <button id="sa-delete-all-no" type="button">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script type="module" src="sidepanel.js"></script>
+  </body>
+</html>

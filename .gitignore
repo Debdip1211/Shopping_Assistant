@@ -1,0 +1,25 @@
+# Secrets — the real API key lives only here, never in git
+.env
+
+# Python virtual environments
+venv/
+.venv/
+
+# Python bytecode caches
+__pycache__/
+*.pyc
+
+# Runtime data (Chroma vector store + products.json) — local only
+backend/data/
+
+# Test cache
+.pytest_cache/
+
+# macOS folder metadata
+.DS_Store
+
+# Personal editor settings
+.vscode/
+
+# Project spec kept private (not published)
+CLAUDE.md
