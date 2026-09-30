@@ -27,7 +27,10 @@ A question about *one* product can often be answered by pasting the whole page i
 
 ## Architecture
 
-![Architecture diagram](docs/architecture.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/architecture-dark.png">
+  <img alt="Architecture: the Chrome extension reads the product page and chats through a local FastAPI backend, which stores chunks in Chroma and product records in products.json on your computer, and sends only the prompt to Qwen3 on Hugging Face." src="docs/architecture.png">
+</picture>
 
 The project has two independent parts that talk **only** through an HTTP API:
 
